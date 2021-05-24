@@ -1,38 +1,19 @@
 <template>
   <div id="app">
     <Header />
-    <Disc v-for="(disc, index) in discs" :key="index" :disc="disc" />
+    <Main />
   </div>
 </template>
 
 <script>
-import axios from "axios";
 import Header from "@/components/Header";
-import Disc from "@/components/Disc";
+import Main from "@/components/Main";
 
 export default {
   name: "App",
   components: {
     Header,
-    Disc,
-  },
-  data() {
-    return {
-      axios,
-      discs: [],
-    };
-  },
-  created() {
-    axios
-      .get("https://flynn.boolean.careers/exercises/api/array/music")
-      .then((res) => {
-        console.log("Data:");
-        console.log(res.data.response);
-        this.discs = res.data.response;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    Main,
   },
 };
 </script>
@@ -47,5 +28,7 @@ export default {
 body {
   width: 100vw;
   height: 100vh;
+  background-color: #1e2d3b;
+  font-family: "Roboto", sans-serif;
 }
 </style>
