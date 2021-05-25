@@ -1,22 +1,28 @@
 <template>
-  <div class="container">
-    <Disc v-for="(disc, index) in discs" :key="index" :disc="disc" />
+  <div class="main-wrapper">
+    <Search :generi="genereDischi" />
+    <div class="container">
+      <Disc v-for="(disc, index) in discs" :key="index" :disc="disc" />
+    </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import Disc from "@/components/Disc";
+import Search from "@/components/Search";
 
 export default {
   name: "Main",
   components: {
     Disc,
+    Search,
   },
   data() {
     return {
       axios,
       discs: [],
+      genereDischi: [],
     };
   },
   created() {
@@ -26,6 +32,13 @@ export default {
         console.log("Data:");
         console.log(res.data.response);
         this.discs = res.data.response;
+        res.data.response.forEach((obj) => {
+          if (!this.genereDischi.includes(obj.genre)) {
+            this.genereDischi.push(obj.genre);
+          }
+        });
+        console.log("Array genere in Main:");
+        console.log(this.genereDischi);
       })
       .catch((err) => {
         console.log(err);
