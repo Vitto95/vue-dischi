@@ -2,18 +2,22 @@
   <div>
     <form>
       <label for="genere-dischi">Filtra per genere</label>
-      <select name="genere" id="genere-dischi">
+      <select
+        @change="searchGenre"
+        v-model="genereDisco"
+        name="genere"
+        id="genere-dischi"
+      >
         <option v-for="(genere, index) in generi" :key="index" :value="genere">
           {{ genere }}
         </option>
       </select>
+      <button>reset</button>
     </form>
   </div>
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: "Search",
   props: {
@@ -21,8 +25,13 @@ export default {
   },
   data() {
     return {
-      axios,
+      genereDisco: "",
     };
+  },
+  methods: {
+    searchGenre() {
+      this.$emit("cercaGenere", this.genereDisco);
+    },
   },
 };
 </script>

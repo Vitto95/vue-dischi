@@ -1,8 +1,8 @@
 <template>
   <div class="main-wrapper">
-    <Search :generi="genereDischi" />
+    <Search @cercaGenere="filterGenre" :generi="genereDischi" />
     <div class="container">
-      <Disc v-for="(disc, index) in discs" :key="index" :disc="disc" />
+      <Disc v-for="(disc, index) in filteredDiscs" :key="index" :disc="disc" />
     </div>
   </div>
 </template>
@@ -23,7 +23,26 @@ export default {
       axios,
       discs: [],
       genereDischi: [],
+      genreFilter: "",
     };
+  },
+  methods: {
+    filterGenre(text) {
+      this.genreFilter = text;
+    },
+  },
+  computed: {
+    filteredDiscs() {
+      let cleanArr = this.discs.filter((disc) => disc.author !== undefined);
+      console.log("array dischi filtrato:");
+      console.log(cleanArr);
+      if (this.genreFilter === "") {
+        return cleanArr;
+      }
+      return cleanArr.filter((disc) =>
+        disc.genre.toLowerCase().includes(this.genreFilter.toLowerCase())
+      );
+    },
   },
   created() {
     axios
