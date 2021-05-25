@@ -1,6 +1,6 @@
 <template>
   <header>
-    <img src="" alt="img" />
+    <img src="../assets/img/logo.svg" alt="img" />
   </header>
 </template>
 
@@ -12,8 +12,13 @@ export default {
 
 <style lang="scss" scoped>
 header {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 70px;
   background-color: #2e3a46;
+  img {
+    height: 60px;
+  }
 }
 </style>

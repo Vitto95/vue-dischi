@@ -45,7 +45,7 @@ export default {
   grid-template-rows: repeat(2, 50%);
   grid-auto-rows: 50%;
   width: 60%;
-  height: calc(100vh - 70px);
+  /* height: calc(100vh - 70px); */
   padding: 100px;
   overflow: auto;
   margin: 0 auto;

@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header />
+    <Search />
     <Main />
   </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import Header from "@/components/Header";
 import Main from "@/components/Main";
+import Search from "@/components/Search";
 
 export default {
   name: "App",
   components: {
     Header,
     Main,
+    Search,
   },
 };
 </script>
